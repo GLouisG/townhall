@@ -73,4 +73,8 @@ class Posts(models.Model):
       residence = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
       def __str__(self):
             return f'Posts {self.content}'
-                      
+      def create_post(self):
+            self.save()
+
+      def delete_post(self):
+            self.delete()                      
