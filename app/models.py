@@ -66,3 +66,11 @@ class Business(models.Model):
       def find_businesses(cls, id):
           businesses = cls.objects.filter(id = id)  
           return businesses 
+
+class Posts(models.Model):
+      owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
+      content = models.CharField(max_length=200)
+      residence = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
+      def __str__(self):
+            return f'Posts {self.content}'
+                      
