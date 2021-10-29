@@ -11,7 +11,7 @@ class Neighbourhood(models.Model):
       # resident = models.ForeignKey('User', on_delete=models.CASCADE)
       census = models.PositiveIntegerField(default=0)
       contacts = models.CharField(max_length=250)
-      image = models.ImageField(upload_to = 'hood/', default='scene.jpg')
+
       def __str__(self):
             return f'Neighbourhood {self.name}'  
       def create_neigbourhood(self):
@@ -32,6 +32,7 @@ class Profile(models.Model):
       user = models.OneToOneField(User, on_delete=models.CASCADE)
       residence =   models.ForeignKey('User', on_delete=models.CASCADE)
       about = models.CharField(max_length=250)
+      pic = models.ImageField(upload_to = 'hood/', default='profile.jpg')      
       def __str__(self):
             return f'Profile {self.about}' 
       def create_profile(self):
@@ -60,9 +61,9 @@ class Business(models.Model):
 
       def delete_business(self):
             self.delete()  
-      def update_business(self, new_name, new_description):
+      def update_business(self, new_cont, new_description):
             try:
-                  self.name = new_name
+                  self.name = new_cont
                   self.description = new_description
                   self.save()
                   return self
