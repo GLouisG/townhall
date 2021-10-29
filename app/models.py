@@ -35,4 +35,34 @@ class Profile(models.Model):
       def create_profile(self):
             self.save()
       def delete_profile(self):
-            self.delete()               
+            self.delete()   
+
+class Business(models.Model):
+      name = models.CharField(max_length=80) 
+      description = models.CharField(max_length=250)
+      residence = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
+      owner = models.ForeignKey(Profile, on_delete=models.CASCADE)       
+      email = models.EmailField()
+      def __str__(self):
+            return f'Business {self.name}'  
+      def create_business(self):
+            self.save()
+
+      def delete_business(self):
+            self.delete()  
+      def update_business(self, new_name, new_description):
+            try:
+                  self.name = new_name
+                  self.description = new_description
+                  self.save()
+                  return self
+            except self.DoesNotExist:
+                  print('Business not found')
+      @classmethod              
+      def find_business(cls, name):
+          businesses = cls.objects.filter(name__contains = name)  
+          return businesses
+      @classmethod              
+      def find_businesses(cls, id):
+          businesses = cls.objects.filter(id = id)  
+          return businesses 
