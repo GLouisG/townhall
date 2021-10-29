@@ -6,3 +6,4 @@ from app.models import Business, Neighbourhood, Posts, Profile
 admin.site.register(Posts)
 admin.site.register(Profile)
 admin.site.register(Neighbourhood)
+admin.site.register(Business)
