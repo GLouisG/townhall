@@ -17,11 +17,19 @@ class Neighbourhood(models.Model):
 
       def delete_neigbourhood(self):
             self.delete()         
-      def update_neighbourhood(self, new_name, new_img):
+      def update_neighbourhood(self, new_img, cont):
             try:
-                  self.name = new_name
                   self.image = new_img
+                  self.contacts = cont
                   self.save()
                   return self
             except self.DoesNotExist:
                   print('Neighbourhood not found')                
+
+class Profile(models.Model):
+      user = models.OneToOneField(User, on_delete=models.CASCADE)
+      residence =   models.ForeignKey('User', on_delete=models.CASCADE)
+      about = models.CharField(max_length=250)
+      def __str__(self):
+            return f'Profile {self.about}' 
+           
