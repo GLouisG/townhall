@@ -12,3 +12,8 @@ class Neighbourhood(models.Model):
       image = models.ImageField(upload_to = 'hood/', default='scene.jpg')
       def __str__(self):
             return f'Neighbourhood {self.name}'  
+      def create_neigbourhood(self):
+            self.save()
+
+      def delete_neigbourhood(self):
+            self.delete()             
