@@ -13,3 +13,7 @@ class ProfUpdateForm(forms.ModelForm):
     class Meta:
       model = Profile
       fields = ('about', 'pic')      
+class NewBizForm(forms.ModelForm):
+    class Meta:
+      model = Business
+      exclude=["residence", "owner"]
