@@ -5,4 +5,7 @@ class AddHoodForm(forms.ModelForm):
     class Meta:
       model = Neighbourhood
       exclude=["census"]
-
+class NewPostForm(forms.ModelForm):
+    class  Meta:
+      model = Post
+      exclude = ['owner', 'residence']
