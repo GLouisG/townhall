@@ -16,4 +16,12 @@ class Neighbourhood(models.Model):
             self.save()
 
       def delete_neigbourhood(self):
-            self.delete()             
+            self.delete()         
+      def update_neighbourhood(self, new_name, new_img):
+            try:
+                  self.name = new_name
+                  self.image = new_img
+                  self.save()
+                  return self
+            except self.DoesNotExist:
+                  print('Neighbourhood not found')                
