@@ -52,7 +52,7 @@ def search(request):
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
 
-def  you(request):
+def you(request):
   current_profile = request.user.profile
   businesses = Business.objects.filter(owner = current_profile).all()
   posts = Posts.objects.filter(owner = current_profile).all()
