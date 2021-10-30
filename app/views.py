@@ -17,4 +17,15 @@ def home(request):
         post.save()
         return redirect('home')
      else:
-       ps_form = NewPostForm() 
+       ps_form = NewPostForm()     
+
+  if request.method == "POST" and 'bz_btn' in request.POST:
+     bz_form = NewBizForm(request.POST) 
+     if bz_form.is_valid():
+        biz = bz_form.save(commit=False)
+        biz.owner = request.user.profile
+        biz.residence = user_hood
+        biz.save()
+        return redirect('home')
+     else:
+       bz_form = NewBizForm()
