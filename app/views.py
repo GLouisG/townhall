@@ -51,3 +51,12 @@ def search(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
+
+def  you(request):
+  current_profile = request.user.profile
+  businesses = Business.objects.filter(owner = current_profile).all()
+  posts = Posts.objects.filter(owner = current_profile).all()
+  hoods = Neighbourhood.objects.filter().all()
+
+  
+  return render(request, "index.html", {"posts": posts, "businesses":businesses, "pu_form":pu_form, "res_form":res_form, "hoods":hoods})
