@@ -6,4 +6,5 @@ from django.conf import settings
 urlpatterns=[
     url('^$',views.home,name='home'),
     url(r'^you/', views.you, name="you"),
+    url(r'^search/',  views, name='search'),
 ]
