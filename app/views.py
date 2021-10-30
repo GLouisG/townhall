@@ -65,6 +65,19 @@ def  you(request):
         res.save()
         return redirect('you')
      else:
-       res_form = AddHoodForm()    
+       res_form = AddHoodForm()  
+
+  if request.method == "POST" and 'prf_btn' in request.POST:
+    pu_form = ProfUpdateForm(request.POST, request.FILES,instance=request.user.profile)
+    if pu_form.is_valid():     
+      image = pu_form.cleaned_data['pic']
+      bio = pu_form.cleaned_data['about']
+      current_profile.pic = image
+      current_profile.about = bio
+      current_profile.save()
+      print("image", image)
+      return redirect('you')
+  else:
+     pu_form =ProfUpdateForm() 
 
   return render(request, "index.html", {"posts": posts, "businesses":businesses, "pu_form":pu_form, "res_form":res_form, "hoods":hoods})
