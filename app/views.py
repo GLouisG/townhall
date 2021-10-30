@@ -58,5 +58,13 @@ def  you(request):
   posts = Posts.objects.filter(owner = current_profile).all()
   hoods = Neighbourhood.objects.filter().all()
 
-  
+  if request.method == "POST" and 'res_btn' in request.POST:
+     res_form = AddHoodForm(request.POST) 
+     if res_form.is_valid():
+        res = res_form.save(commit=False)
+        res.save()
+        return redirect('you')
+     else:
+       res_form = AddHoodForm()    
+
   return render(request, "index.html", {"posts": posts, "businesses":businesses, "pu_form":pu_form, "res_form":res_form, "hoods":hoods})
