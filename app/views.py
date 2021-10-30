@@ -29,3 +29,14 @@ def home(request):
         return redirect('home')
      else:
        bz_form = NewBizForm()
+  if 'conts' in request.GET and request.GET["conts"]:
+    contact_new = request.GET.get("conts")
+    user_hood.update_neighbourhood(contact_new)
+
+    return redirect('home')  
+
+  bizna= Business.objects.filter(residence=user_hood).all()  
+
+  #change contacts
+
+  return render(request, "index.html", {"posts": posts, "ps_form":ps_form, "bz_form":bz_form, "bizna":bizna})       
