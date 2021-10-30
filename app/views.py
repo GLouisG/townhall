@@ -92,3 +92,22 @@ def bizcontacts(request, name):
           biz.update_business(new_cont,new_description)
 
           return redirect('you')  
+
+def join(request, new_id, old_id):
+    new_res = Neighbourhood.objects.get(id = new_id)
+    user_hood = request.user.profile.residence
+    old_res = None
+    if old_id != None:
+       old_res =  Neighbourhood.objects.get(id = old_id)
+    
+    if user_hood != new_res:
+      request.user.profile.residence = new_res
+      request.user.profile.save()
+      new_res.census +=1
+      new_res.save()
+      old_res.census -= 1
+      old_res.save()
+      
+
+      
+#NB add links after creating neighbourhood that lead one to the form for changing their neighbourhood
