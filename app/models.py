@@ -19,9 +19,8 @@ class Neighbourhood(models.Model):
 
       def delete_neigbourhood(self):
             self.delete()         
-      def update_neighbourhood(self, new_img, cont):
+      def update_neighbourhood(self, cont):
             try:
-                  self.image = new_img
                   self.contacts = cont
                   self.save()
                   return self
@@ -30,7 +29,7 @@ class Neighbourhood(models.Model):
 
 class Profile(models.Model):
       user = models.OneToOneField(User, on_delete=models.CASCADE)
-      residence =   models.ForeignKey('User', on_delete=models.CASCADE)
+      residence =   models.ForeignKey('Neighbourhood', on_delete=models.CASCADE)
       about = models.CharField(max_length=250)
       pic = models.ImageField(upload_to = 'hood/', default='profile.jpg')      
       def __str__(self):
