@@ -40,3 +40,14 @@ def home(request):
   #change contacts
 
   return render(request, "index.html", {"posts": posts, "ps_form":ps_form, "bz_form":bz_form, "bizna":bizna})       
+
+def search(request):
+    if 'business' in request.GET and request.GET["business"]:
+        search_term = request.GET.get("business")
+        found_bz = Business.find_business(search_term)
+        title = f"For {search_term}"
+
+        return render(request, 'search.html', {"title":title, "business":found_bz})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
