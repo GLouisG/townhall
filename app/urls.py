@@ -9,4 +9,5 @@ urlpatterns=[
     url(r'^you/', views.you, name="you"),
     url(r'^search/',  views, name='search'),
     path("bizcontacts/<str:name>/",views.bizcontacts, name="bizcontacts"),    
+    path("join/<int:new_id>/<int:old_id>",views.join, name="join")
 ]
