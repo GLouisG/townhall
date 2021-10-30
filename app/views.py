@@ -80,4 +80,15 @@ def  you(request):
   else:
      pu_form =ProfUpdateForm() 
 
-  return render(request, "index.html", {"posts": posts, "businesses":businesses, "pu_form":pu_form, "res_form":res_form, "hoods":hoods})
+  return render(request, "index.html", {"posts": posts, "businesses":businesses, "pu_form":pu_form, "res_form":res_form, "hoods":hoods, "profile":current_profile})
+
+
+def bizcontacts(request, name):
+      if 'bzcont' in request.GET and request.GET["bzcont"]:
+        if 'desc' in request.GET and request.GET["desc"]:
+          biz = Business.get(name = name)
+          new_cont = request.GET.get("bzcont")
+          new_description = request.GET.get("desc")
+          biz.update_business(new_cont,new_description)
+
+          return redirect('you')  
