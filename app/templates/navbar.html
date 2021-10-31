@@ -1,0 +1,61 @@
+{%load bootstrap4%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/js/mdb.min.js"></script>
+
+</head>
+<body>
+  <nav class="navbar">
+      <a class="navbar-brand" href="{%url 'home'%}"><i class="fa fa-bank"></i> Townhall</a>
+      <div class="col-sm-4 col-md-4 navbar-nav srch">
+
+        <form class="navbar-form" role="search" action="{% url 'search' %}">
+
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search by caption" name="business">
+            <div class="input-group-btn">
+              <button style="border: 1px solid grey" class="btn btn-default" type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <a class="navbar-brand" href="{%url 'you'%}"><i class="fa fa-user" style="color: black;"></i>Profile</a>      
+  </nav>
+
+</body>
+
+</html>
+<style>
+
+  nav{
+      background-color:#66ccff;
+      color: black;
+  }
+  a{
+    color: black
+  }
+  ul li{
+    list-style-type: none;
+  }
+  li{
+    display:inline;
+    padding: 5px 5px;  
+  }
+  body{
+    position: relative;
+  }
+  .srch{
+    position: absolute;
+    left: 35%;
+  }
+
+</style>
