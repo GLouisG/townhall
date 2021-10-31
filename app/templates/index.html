@@ -2,17 +2,19 @@
 {% load bootstrap5 %}
 
 {%block content%}{{block.super}}
+  {%if user.profile.residence%}
   <div class="container-fluid">
 
     <div class="info-div card">
       <img class="topimg" src="https://wallpaper.dog/large/13153.jpg" alt="">
-      <h2>Neighbourhood</h2>
-      <h4>Population</h4>
+      <h2>Neighbourhood:{{user.profile.residence.name}}</h2>
+      <h4>Population: {{user.profile.residence.census}}</h4>
 
     </div>
     <div class="card botinfo-div">
       <p style="margin: 0;">Contacts &nbsp<p style="color: grey; margin: 0;">&nbspPolice, Health and more</p></p>
-
+      <p>{{user.profile.residence.contacts}}</p>
+      <p>Location: {{user.profile.residence.location}}</p>
       <div class="dropdown">
         <button class="dropbtn">MANAGE & CREATE ⌄</button>
         <div class="dropdown-content">
@@ -35,22 +37,24 @@
 
             <h2 style="text-align:center; width: auto; background-color:#66ccff;">Businesses</h2>
             {% for item in businesses %}
-              <div class="card bzcard">
-                <h5 style="text-align: center;" class="card-title">{{item.name}}</h5>
+              <div style="text-align:center;" class="card bzcard">
+                <h5 style="text-align: center; color: black;" class="card-title">{{item.name}}</h5>
                 <p>{{item.description}}</p>
                 <p>{{item.email}}</p>
-                <p>{{item.owner.username}}--{{item.residence}}</p>
+                <p>{{item.owner.user.username}}--{{item.residence.name}}</p>
               </div>
+              <br>
             {% endfor %}
          </div>
 
-         <div class="col-md-6 pscol">
+         <div style="text-align:center;" class="col-md-6 pscol">
             <h2 style="text-align:center; width: auto; background-color:#66ccff;">Posts</h2> 
             {% for item in posts %}
               <div class="card pscard">
                 <p>{{item.content}}</p>
-                <p>{{item.owner.username}}--{{item.residence}}</p>
+                <p>{{item.owner.user.username}} ---- {{item.residence.name}}</p>
               </div>
+              <br>
             {% endfor %}            
          </div>
 
@@ -117,6 +121,9 @@
 
 
   </div>
+  {%else%}
+  <h1>You aren't part of any Neighbourhood create or join one from your <a href="{%url 'you'%}">profile</a></h1>
+  {%endif%}
   <script>
 
   $(document).ready(function(){   

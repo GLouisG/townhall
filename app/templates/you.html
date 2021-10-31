@@ -4,7 +4,8 @@
   <div class="container-fluid">
 
     <div class="info-div card">
-      <img class="topimg" src="https://preview.redd.it/mgq8j7bpc7w71.png?width=640&crop=smart&auto=webp&s=5da18af3f4858ab15abc219806686119c0d0d0a4" alt="">
+      <!-- <img class="topimg" src="https://preview.redd.it/mgq8j7bpc7w71.png?width=640&crop=smart&auto=webp&s=5da18af3f4858ab15abc219806686119c0d0d0a4" alt=""> -->
+      <img class="topimg" src="{{user.profile.pic.url}}" alt="">
       <h2 >{{user.username}}</h2>&nbsp
     </div>
 
@@ -17,6 +18,7 @@
           <a href="#" class = "resInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Neighbourhood</a>
           <a href="#" class = "changeInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Join/Change Neighbourhood</a>
           <a href="#" class = "puInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Update Profile</a>
+          <a href="/logout">Logout</a>
         </div>
       </div>
     </div>
@@ -33,21 +35,23 @@
        <h2 style="text-align:center; width: auto; background-color:#66ccff;">Businesses</h2>
        {% for item in businesses %}
          <div class="card bzcard">
-           <h5 style="text-align: center;" class="card-title">{{item.name}}</h5>
+           <h5 style="text-align: center; color: black;" class="card-title">{{item.name}}</h5>
            <p>{{item.description}}</p>
            <p>{{item.email}}</p>
-           <p>{{item.owner.username}}--{{item.residence}}</p>
+           <p>{{item.owner.user.username}}--{{item.residence.name}}</p>
          </div>
+         <br>
        {% endfor %}
     </div>
 
     <div class="col-md-6 pscol">
        <h2 style="text-align:center; width: auto; background-color:#66ccff;">Posts</h2> 
        {% for item in posts %}
-         <div class="card pscard">
+         <div style="text-align:center" class="card pscard">
            <p>{{item.content}}</p>
-           <p>{{item.owner.username}}--{{item.residence}}</p>
+           <p>{{item.owner.user.username}}--{{item.residence.name}}</p>
          </div>
+         <br>
        {% endfor %}            
     </div>
 
@@ -70,18 +74,18 @@
       <div class="modal-body">
         Form will go here
 
-        <form class="pu-form" action="{%url 'home'%}" method="post" enctype="multipart/form-data">
+        <form class="pu-form" action="{%url 'you'%}" method="post" enctype="multipart/form-data">
           <h4 style="text-align:center">Update Your Profile</h4>
           {% csrf_token %}
           {% bootstrap_form pu_form %}
-          <input type="submit" class="btn btn-primary btn-lg" value="Post" name="pu_btn">
+          <input type="submit" class="btn btn-primary btn-lg" value="Post" name="prf_btn">
         </form>
 
-        <form class="res-form" action="{%url 'home'%}" method="post" enctype="multipart/form-data">
+        <form class="res-form" action="{%url 'you'%}" method="post" enctype="multipart/form-data">
           <h4 style="text-align:center">Create Neighbourhood</h4>
           {% csrf_token %}
           {% bootstrap_form res_form %}
-          <input type="submit" class="btn btn-primary btn-lg" value="Post" name="pu_btn">
+          <input type="submit" class="btn btn-primary btn-lg" value="Post" name="res_btn">
 
           <p style="color: grey; margin: 0;">After creating a residence finish by  <a href="#" class = "changeInput">joining</a> </p>
         </form>        
@@ -91,7 +95,7 @@
           <ul>
             <li>.</li>
             {% for item in hoods %}
-            <li><a href="join/{{item.id}}/{{user.profile.residence.id}}"></a>{{item.name}}</li>
+            <li><a href="join/{{item.id}}/{{user.profile.residence.id}}">{{item.name}}</a></li>
             {% endfor %}
           </ul>
           <p style="color: grey; margin: 0;">Can't see your residence register it <a href="#" class = "resInput">here</a> </p>

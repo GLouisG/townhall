@@ -2,8 +2,10 @@ from django.shortcuts import redirect, render
 from app.forms import AddHoodForm, NewBizForm, NewPostForm, ProfUpdateForm
 
 from app.models import Business, Neighbourhood, Posts
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url='/accounts/login/')
 def home(request):
   user_hood = request.user.profile.residence
   posts = Posts.objects.filter(residence=user_hood).all()
@@ -42,7 +44,6 @@ def home(request):
   #change contacts
 
   return render(request, "index.html", {"posts": posts, "ps_form":ps_form, "bz_form":bz_form, "businesses":businesses})
-
 def search(request):
     if 'business' in request.GET and request.GET["business"]:
         search_term = request.GET.get("business")
@@ -54,6 +55,7 @@ def search(request):
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
 
+@login_required(login_url='/accounts/login/')
 def you(request):
   current_profile = request.user.profile
   businesses = Business.objects.filter(owner = current_profile).all()
@@ -97,7 +99,7 @@ def bizcontacts(request, name):
 
           return redirect('you')
 
-def join(request, new_id, old_id):
+def join(request, new_id, old_id=None):
     new_res = Neighbourhood.objects.get(id = new_id)
     user_hood = request.user.profile.residence
     old_res = None
@@ -109,9 +111,11 @@ def join(request, new_id, old_id):
       request.user.profile.save()
       new_res.census +=1
       new_res.save()
-      old_res.census -= 1
-      old_res.save()
+      if old_res:
+        old_res.census -= 1
+        old_res.save()
 
     return redirect('you')
+
 
 #NB add links after creating neighbourhood that lead one to the form for changing their neighbourhood

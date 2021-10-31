@@ -31,7 +31,7 @@ class Profile(models.Model):
       user = models.OneToOneField(User, on_delete=models.CASCADE)
       residence =   models.ForeignKey('Neighbourhood', on_delete=models.CASCADE,null=True)
       about = models.CharField(max_length=250, default='Welcome')
-      pic = models.ImageField(upload_to = 'hood/', default='profile.jpg')      
+      pic = models.ImageField(upload_to = 'hood/', default='banner.png')      
       def __str__(self):
             return f'Profile {self.about}' 
       def create_profile(self):

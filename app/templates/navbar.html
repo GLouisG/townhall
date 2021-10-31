@@ -20,7 +20,7 @@
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search by caption" name="business">
             <div class="input-group-btn">
-              <button style="border: 1px solid grey" class="btn btn-default" type="submit">
+              <button style="border: 1px solid grey; background-color: aliceblue;" class="btn btn-default" type="submit">
                 <i class="fa fa-search"></i>
               </button>
             </div>
@@ -28,7 +28,16 @@
 
         </form>
       </div>
-      <a class="navbar-brand" href="{%url 'you'%}"><i class="fa fa-user" style="color: black;"></i>Profile</a>      
+      <ul>
+        <li>
+          <a class="navbar-brand" href="{%url 'home'%}">
+            <!-- <i class="fa fa-user" style="color: black;"></i> -->🌆|Residence
+          </a>      
+          <a class="navbar-brand" href="{%url 'you'%}"><i class="fa fa-user" style="color: black;"></i>|Profile</a>      
+        </li>
+        <li>
+        </li>
+      </ul>
   </nav>
 
 </body>

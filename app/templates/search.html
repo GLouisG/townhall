@@ -17,17 +17,15 @@
   <div class="row ">
 
   {% if business %}
-    {% for item in business %}
-    <div class="row">
+    {% for business in business %}
       <div class="card srchcard">
-        <h2>{{business.name}}</h2>
-        <div class="col-md-6">
+        <h2 style="color: black;">{{business.name}}</h2>
+    
           <p>{{business.description}}</p>
           <p>{{business.email}}</p>
-          <p style="white-space: pre;">{{business.owner}}  {{business.residence}}</p>
-        </div>
+          <p>{{business.owner.username}} ~ {{business.residence.name}}</p>
       </div>      
-    </div>
+      <br>
     {% endfor %}
   {% endif %}
   </div>
