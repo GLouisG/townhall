@@ -1,4 +1,6 @@
 {%extends 'base.html'%}
+{% load bootstrap5 %}
+
 {%block content%}{{block.super}}
   <div class="container-fluid">
 
@@ -55,10 +57,24 @@
       </div>
       <div class="modal-body">
         Form will go here
+
+        <form  action="{%url 'home'%}" method="post" enctype="multipart/form-data">
+          <h4 style="text-align:center">Add your post</h4>
+          {% csrf_token %}
+          {% bootstrap_form ps_form %}
+          <input type="submit" class="btn btn-success btn-lg" value="Post" name="ps_btn">
+        </form>
+
+        <form  action="{%url 'home'%}" method="post" enctype="multipart/form-data">
+          <h4 style="text-align:center">Add your business</h4>
+          {% csrf_token %}
+          {% bootstrap_form bz_form %}
+          <input type="submit" class="btn btn-success btn-lg" value="Post" name="bz_btn">
+        </form>        
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
