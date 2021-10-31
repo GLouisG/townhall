@@ -1,0 +1,35 @@
+{%extends 'base.html'%} 
+{% block content %}
+<div class="container-fluid theconts">
+
+  <div class="row">
+    {% if business%}
+      <h2>Found {{ business|length }} results{{title}}</h2>
+    {% else %}
+      <h2> Found 0 businesses for the search term {{title}}</h2>
+    {% endif %}
+    {% if message%}
+      <h2>{{message}}</h2>
+    {%endif%}
+
+  </div>
+
+  <div class="row ">
+
+  {% if business %}
+    {% for item in business %}
+    <div class="row">
+      <div class="card srchcard">
+        <h2>{{business.name}}</h2>
+        <div class="col-md-6">
+          <p>{{business.description}}</p>
+          <p>{{business.email}}</p>
+          <p style="white-space: pre;">{{business.owner}}  {{business.residence}}</p>
+        </div>
+      </div>      
+    </div>
+    {% endfor %}
+  {% endif %}
+  </div>
+</div>
+{% endblock %}
