@@ -16,9 +16,9 @@
       <div class="dropdown">
         <button class="dropbtn">MANAGE & CREATE ⌄</button>
         <div class="dropdown-content">
-          <a href="#" id = "myInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Post</a>
-          <a href="#" id = "myInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Business</a>
-          <a href="#" id = "myInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Change contacts</a>
+          <a href="#" id = "postInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Post</a>
+          <a href="#" id = "businessInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Business</a>
+          <a href="#" id = "contactInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Change contacts</a>
         </div>
       </div>
     </div>
@@ -58,14 +58,14 @@
       <div class="modal-body">
         Form will go here
 
-        <form class="contact-form" action="{%url 'home'%}" method="post" enctype="multipart/form-data">
+        <form class="post-form" action="{%url 'home'%}" method="post" enctype="multipart/form-data">
           <h4 style="text-align:center">Add your post</h4>
           {% csrf_token %}
           {% bootstrap_form ps_form %}
           <input type="submit" class="btn btn-primary btn-lg" value="Post" name="ps_btn">
         </form>
 
-        <form class="contact-form" action="{%url 'home'%}" method="post" enctype="multipart/form-data">
+        <form class="business-form" action="{%url 'home'%}" method="post" enctype="multipart/form-data">
           <h4 style="text-align:center">Add your business</h4>
           {% csrf_token %}
           {% bootstrap_form bz_form %}
@@ -103,5 +103,26 @@
 
 
   </div>
+  <script>
 
+  $(document).ready(function(){   
+    var cells = ["contact","business", "post"]
+    var others = ["contact","business", "post"]
+    cells.forEach(function(cell){
+      others.forEach(function(other){
+        $("#"+cell+"Input").click(function(){
+          $("."+cell+"-form").show(function(){
+
+            });
+            if (other != cell){
+              $("."+other+"-form").hide(function(){
+
+              });
+            } 
+          });
+      });
+    });
+  });    
+
+  </script>
 {%endblock%}
