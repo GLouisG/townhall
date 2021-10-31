@@ -29,8 +29,8 @@ class Neighbourhood(models.Model):
 
 class Profile(models.Model):
       user = models.OneToOneField(User, on_delete=models.CASCADE)
-      residence =   models.ForeignKey('Neighbourhood', on_delete=models.CASCADE)
-      about = models.CharField(max_length=250)
+      residence =   models.ForeignKey('Neighbourhood', on_delete=models.CASCADE,null=True)
+      about = models.CharField(max_length=250, default='Welcome')
       pic = models.ImageField(upload_to = 'hood/', default='profile.jpg')      
       def __str__(self):
             return f'Profile {self.about}' 

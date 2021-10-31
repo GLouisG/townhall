@@ -1,13 +1,13 @@
 from django import forms
 
-from app.models import Profile, Post, Business, Neighbourhood
+from app.models import Profile, Posts, Business, Neighbourhood
 class AddHoodForm(forms.ModelForm):
     class Meta:
       model = Neighbourhood
       exclude=["census"]
 class NewPostForm(forms.ModelForm):
     class  Meta:
-      model = Post
+      model = Posts
       exclude = ['owner', 'residence']
 class ProfUpdateForm(forms.ModelForm):
     class Meta:

@@ -8,6 +8,8 @@ def home(request):
   user_hood = request.user.profile.residence 
   posts = Posts.objects.filter(residence=user_hood).all()
   
+  ps_form = None
+  bz_form = None
   if request.method == "POST" and 'ps_btn' in request.POST:
      ps_form = NewPostForm(request.POST) 
      if ps_form.is_valid():
@@ -58,6 +60,8 @@ def you(request):
   posts = Posts.objects.filter(owner = current_profile).all()
   hoods = Neighbourhood.objects.filter().all()
 
+  res_form = None
+  pu_form = None
   if request.method == "POST" and 'res_btn' in request.POST:
      res_form = AddHoodForm(request.POST) 
      if res_form.is_valid():
@@ -80,7 +84,7 @@ def you(request):
   else:
      pu_form =ProfUpdateForm() 
 
-  return render(request, "index.html", {"posts": posts, "businesses":businesses, "pu_form":pu_form, "res_form":res_form, "hoods":hoods, "profile":current_profile})
+  return render(request, "you.html", {"posts": posts, "businesses":businesses, "pu_form":pu_form, "res_form":res_form, "hoods":hoods, "profile":current_profile})
 
 
 def bizcontacts(request, name):
@@ -108,6 +112,6 @@ def join(request, new_id, old_id):
       old_res.census -= 1
       old_res.save()
       
-
+    return redirect('you')    
       
 #NB add links after creating neighbourhood that lead one to the form for changing their neighbourhood

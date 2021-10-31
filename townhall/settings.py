@@ -183,4 +183,4 @@ api_secret='TTGJ37uyV4JWR0vbeAyhxQGRhB8'
 
 DEFAULT_AUTO_FIELD ='django.db.models.AutoField' # 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
