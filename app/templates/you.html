@@ -1,4 +1,5 @@
 {%extends 'base.html'%}
+{% load bootstrap5 %}
 {%block content%}{{block.super}}
   <div class="container-fluid">
 
@@ -13,9 +14,9 @@
       <div class="dropdown">
         <button class="dropbtn">MANAGE & CREATE ⌄</button>
         <div class="dropdown-content">
-          <a href="#" id = "myInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Neighbourhood</a>
-          <a href="#" id = "myInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Join/Change Neighbourhood</a>
-          <a href="#" id = "myInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Update Profile</a>
+          <a href="#" id = "resInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Neighbourhood</a>
+          <a href="#" id = "changeInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Join/Change Neighbourhood</a>
+          <a href="#" id = "puInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Update Profile</a>
         </div>
       </div>
     </div>
@@ -53,6 +54,14 @@
       </div>
       <div class="modal-body">
         Form will go here
+
+        <form class="puform" action="{%url 'home'%}" method="post" enctype="multipart/form-data">
+          <h4 style="text-align:center">Update Your Profile</h4>
+          {% csrf_token %}
+          {% bootstrap_form pu_form %}
+          <input type="submit" class="btn btn-primary btn-lg" value="Post" name="pu_btn">
+        </form>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
