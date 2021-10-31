@@ -14,9 +14,9 @@
       <div class="dropdown">
         <button class="dropbtn">MANAGE & CREATE ⌄</button>
         <div class="dropdown-content">
-          <a href="#" id = "resInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Neighbourhood</a>
-          <a href="#" id = "changeInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Join/Change Neighbourhood</a>
-          <a href="#" id = "puInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Update Profile</a>
+          <a href="#" class = "resInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Neighbourhood</a>
+          <a href="#" class = "changeInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Join/Change Neighbourhood</a>
+          <a href="#" class = "puInput" data-bs-toggle="modal" data-bs-target="#exampleModal">Update Profile</a>
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@
           {% bootstrap_form res_form %}
           <input type="submit" class="btn btn-primary btn-lg" value="Post" name="pu_btn">
 
-          <p style="color: grey; margin: 0;">After creating a residence finish by  <a href="#" id = "changeInput">joining</a> </p>
+          <p style="color: grey; margin: 0;">After creating a residence finish by  <a href="#" class = "changeInput">joining</a> </p>
         </form>        
 
         <div class="change-form">
@@ -79,7 +79,7 @@
             <li><a href="join/{{item.id}}/{{user.profile.residence.id}}"></a>{{item.name}}</li>
             {% endfor %}
           </ul>
-          <p style="color: grey; margin: 0;">Can't see your residence register it <a href="#" id = "resInput">here</a> </p>
+          <p style="color: grey; margin: 0;">Can't see your residence register it <a href="#" class = "resInput">here</a> </p>
         </div>
 
       </div>
@@ -99,5 +99,29 @@
 
 
   </div>
+
+
+  <script>
+
+    $(document).ready(function(){   
+      var cells = ["res","change", "pu"]
+      var others = ["res","change", "pu"]
+      cells.forEach(function(cell){
+        others.forEach(function(other){
+          $("."+cell+"Input").click(function(){
+            $("."+cell+"-form").show(function(){
+  
+              });
+              if (other != cell){
+                $("."+other+"-form").hide(function(){
+  
+                });
+              } 
+            });
+        });
+      });
+    });    
+  
+    </script>  
 
 {%endblock%}
