@@ -35,7 +35,10 @@ body{
 .srchcard{
   border: 1px solid grey;
 }
-
+.pscard, .bzcard {
+  background-color: #66ccff;
+  color: white;
+}
 
 
 /* dropdown stuff */
@@ -74,6 +77,8 @@ body{
   text-decoration: none;
   display: block;
 }
+
+
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #ddd;}

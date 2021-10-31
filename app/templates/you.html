@@ -25,19 +25,34 @@
 <br><br>
 
 
-    <div class="content-div">
-       <div class="row content-row">
+<div class="content-div">
+  <div class="row content-row">
 
-         <div class="col-md-6 bzcol">
-          <h2 style="text-align:center; width: auto; background-color:#66ccff;">Businesses</h2>
+    <div class="col-md-6 bzcol">
+
+       <h2 style="text-align:center; width: auto; background-color:#66ccff;">Businesses</h2>
+       {% for item in businesses %}
+         <div class="card bzcard">
+           <h5 style="text-align: center;" class="card-title">{{item.name}}</h5>
+           <p>{{item.description}}</p>
+           <p>{{item.email}}</p>
+           <p>{{item.owner.username}}--{{item.residence}}</p>
          </div>
-
-         <div class="col-md-6 pscol">
-          <h2 style="text-align:center; width: auto; background-color:#66ccff;">Posts</h2>  
-         </div>
-
-       </div> 
+       {% endfor %}
     </div>
+
+    <div class="col-md-6 pscol">
+       <h2 style="text-align:center; width: auto; background-color:#66ccff;">Posts</h2> 
+       {% for item in posts %}
+         <div class="card pscard">
+           <p>{{item.content}}</p>
+           <p>{{item.owner.username}}--{{item.residence}}</p>
+         </div>
+       {% endfor %}            
+    </div>
+
+  </div> 
+</div>
 
 
 

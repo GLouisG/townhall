@@ -37,11 +37,11 @@ def home(request):
 
     return redirect('home')
 
-  bizna= Business.objects.filter(residence=user_hood).all()
+  businesses= Business.objects.filter(residence=user_hood).all()
 
   #change contacts
 
-  return render(request, "index.html", {"posts": posts, "ps_form":ps_form, "bz_form":bz_form, "bizna":bizna})
+  return render(request, "index.html", {"posts": posts, "ps_form":ps_form, "bz_form":bz_form, "businesses":businesses})
 
 def search(request):
     if 'business' in request.GET and request.GET["business"]:
