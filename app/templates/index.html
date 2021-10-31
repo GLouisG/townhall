@@ -58,19 +58,34 @@
       <div class="modal-body">
         Form will go here
 
-        <form  action="{%url 'home'%}" method="post" enctype="multipart/form-data">
+        <form class="contact-form" action="{%url 'home'%}" method="post" enctype="multipart/form-data">
           <h4 style="text-align:center">Add your post</h4>
           {% csrf_token %}
           {% bootstrap_form ps_form %}
-          <input type="submit" class="btn btn-success btn-lg" value="Post" name="ps_btn">
+          <input type="submit" class="btn btn-primary btn-lg" value="Post" name="ps_btn">
         </form>
 
-        <form  action="{%url 'home'%}" method="post" enctype="multipart/form-data">
+        <form class="contact-form" action="{%url 'home'%}" method="post" enctype="multipart/form-data">
           <h4 style="text-align:center">Add your business</h4>
           {% csrf_token %}
           {% bootstrap_form bz_form %}
-          <input type="submit" class="btn btn-success btn-lg" value="Post" name="bz_btn">
-        </form>        
+          <input type="submit" class="btn btn-primary btn-lg" value="Post" name="bz_btn">
+        </form>      
+        
+        <form class="contact-form" role="search" action="{% url 'home' %}">
+          <h4 style="text-align:center">Change or Add Contacts</h4>
+          <p  style="color: grey; margin: 0; text-align:center">Police Health and more...</p>
+          <div class="input-group" style="width:210px; padding-left: 0px; margin-left: 0px;">
+            <input style="padding-left: 0px; margin-left: 0px;" type="text" class="form-control" placeholder="Contacts Info" name="conts">
+            <div class="input-group-btn">
+              <button style="border: 1px solid grey;"  class="btn btn-default" type="submit"><i class="fa fa-book"></i></button>
+            </div>
+          </div>
+    
+        </form>
+    
+
+
 
       </div>
       <div class="modal-footer">
