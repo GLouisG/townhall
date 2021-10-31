@@ -1,0 +1,1 @@
+web: gunicorn townhall.wsgi --log-file -

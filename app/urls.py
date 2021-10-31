@@ -12,3 +12,5 @@ urlpatterns=[
     path("join/<int:new_id>/<int:old_id>",views.join, name="join"),
     path("join/<int:new_id>/",views.join, name="join"),    
 ]
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
