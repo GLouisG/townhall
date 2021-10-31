@@ -55,17 +55,37 @@
       <div class="modal-body">
         Form will go here
 
-        <form class="puform" action="{%url 'home'%}" method="post" enctype="multipart/form-data">
+        <form class="pu-form" action="{%url 'home'%}" method="post" enctype="multipart/form-data">
           <h4 style="text-align:center">Update Your Profile</h4>
           {% csrf_token %}
           {% bootstrap_form pu_form %}
           <input type="submit" class="btn btn-primary btn-lg" value="Post" name="pu_btn">
         </form>
 
+        <form class="res-form" action="{%url 'home'%}" method="post" enctype="multipart/form-data">
+          <h4 style="text-align:center">Create Neighbourhood</h4>
+          {% csrf_token %}
+          {% bootstrap_form res_form %}
+          <input type="submit" class="btn btn-primary btn-lg" value="Post" name="pu_btn">
+
+          <p style="color: grey; margin: 0;">After creating a residence finish by  <a href="#" id = "changeInput">joining</a> </p>
+        </form>        
+
+        <div class="change-form">
+          <p> Join A Neighbourhood</p>
+          <ul>
+            <li>.</li>
+            {% for item in hoods %}
+            <li><a href="join/{{item.id}}/{{user.profile.residence.id}}"></a>{{item.name}}</li>
+            {% endfor %}
+          </ul>
+          <p style="color: grey; margin: 0;">Can't see your residence register it <a href="#" id = "resInput">here</a> </p>
+        </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+ 
       </div>
     </div>
   </div>
